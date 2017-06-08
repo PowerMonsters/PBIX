@@ -1,0 +1,12 @@
+// para criar uma query parametrizada
+// primeiro tem que criar o parametro @schema
+// depois vai no let
+// e coloca algo assim:
+
+= Sql.Database("dotz-dw1.dotz.org"      
+	, "Dotztemp"                                     
+	, [Query="
+			select * from "
+				&#"@schema"
+				&".tabtest"
+	, CommandTimeout=#duration(0, 1, 0, 0)])
