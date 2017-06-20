@@ -1,3 +1,9 @@
+// Vai em editor avançado e crie steps, separando todos por virgula
+// nesse caso o parametro #"Language" precisa estar criado.
+// ou voce pode criar um outro parametro para o suxifo, 
+// isso facilitará na hora de criar o mesmo step em várias tabelas.
+
+
 let
    Source = Excel.Workbook(File.Contents("C:\Users\ricardo.paula\Documents\RM\Gerdau\Amostra de Dados.xlsx"), null, true),
    Tabela = Source{[Item="d_Material",Kind="Table"]}[Data],
