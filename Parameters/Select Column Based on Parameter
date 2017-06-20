@@ -1,0 +1,16 @@
+let
+   Source = Excel.Workbook(File.Contents("C:\Users\ricardo.paula\Documents\RM\Gerdau\Amostra de Dados.xlsx"), null, true),
+   Tabela = Source{[Item="d_Material",Kind="Table"]}[Data],
+
+	Idioma =  if #"Language" = "Português"  then "pt" else
+ 				    if #"Language" = "English"    then "en" else
+ 				    if #"Language" = "Deutsche"   then "de" else
+ 				    if #"Language" = "Español"    then "es" else 
+ 				    "en",
+            
+    Coluna = "descr_material_" & Idioma,
+
+    SelectCols 	= Table.SelectColumns(Tabela,{"Cod_material",Coluna}),
+    RenameCols 	= Table.RenameColumns(SelectCols,{{Coluna,"Material"}})
+in
+    #"RenameCols"	
