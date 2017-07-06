@@ -1,0 +1,18 @@
+// Fórmula de Haversine para distâncias em superfície esférica
+// Se for inserir como measure use AVERAGE(lat...long...) se for inserir como coluna pode colocar direto RADIANS(lat...long...)
+// A constante Raio_da_Terra=6371 trará os resultados em KM, se quiser ver em metros coloque a constante como 6371000
+
+Distância = 
+	var Raio_da_Terra = 6371
+	var Lat1 = RADIANS(AVERAGE(d_cliente[Latitude]))
+	var Lat2 = RADIANS(AVERAGE(d_loja[Latitude]))
+	var Long1 = RADIANS(AVERAGE(d_cliente[Longitude]))
+	var Long2 = RADIANS(AVERAGE(d_loja[Longitude]))
+	var Delta_Lat = Lat1-Lat2
+	Var Delta_Long = Long1-Long2
+	Var SQMD_Lat = SIN(Delta_Lat/2)^2 // SENO QUADRADO DA METADE DO DELTA DA LATITUDE
+	Var SQMD_Long = SIN(Delta_Long/2)^2 //  SENO QUADRADO DA METADE DO DELTA DA LATITUDE
+	Var Arcoseno = ASIN(SQRT(SQMD_Lat+COS(Lat1)*COS(Lat2)*SQMD_Long)) //ARCSIN(H^0.5)
+	Var Distancia = Raio_da_Terra*2*Arcoseno
+return
+	Distancia
